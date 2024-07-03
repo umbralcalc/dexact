@@ -1,0 +1,6 @@
+dexact.egg-info/**
+dist/**
+build/**
+.venv/**
+.vscode/**
+__pycache__
