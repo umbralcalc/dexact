@@ -1,6 +1,6 @@
 # dexAct
 
-This Python provides the necessary tools to interact with [dexetera](https://github.com/umbralcalc/dexetera). The two key imports are the `ActionTaker` protocol and the `launch_websocket_server` function. You can use these to create a simple script like this:
+This Python package provides the necessary tools to interact with [dexetera](https://github.com/umbralcalc/dexetera). The two key imports are the `ActionTaker` protocol and the `launch_websocket_server` function. You can use these to create a simple script like this:
 
 ```python
 from dexact.server import ActionTaker, launch_websocket_server
