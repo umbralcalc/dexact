@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="dexact",
-    version="1.1.0",
+    version="1.2.0",
     author="Robert J. Hardwick",
     author_email="umbralcalc@gmail.com",
     description="A very simple Python package which provides the necessary tools to interact with dexetera",

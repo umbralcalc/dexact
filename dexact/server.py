@@ -3,7 +3,8 @@ import websockets
 
 from typing import Protocol
 from websockets.server import WebSocketServerProtocol
-from .partition_state_pb2 import PartitionState, State
+from .partition_state_pb2 import PartitionState
+from .action_state_pb2 import ActionState
 
 
 class ActionTaker(Protocol):
@@ -50,13 +51,15 @@ async def _launch_websocket_server(action_taker: ActionTaker, num_state_keys: in
         async for binary_message in websocket:
             message = PartitionState()
             message.ParseFromString(binary_message)
-            received_messages[message.partition_name] = message.state.values
+            received_messages[message.partition_name] = message.state
             if len(received_messages) == num_state_keys:
                 action_state = action_taker.take_next_action(
                     message.cumulative_timesteps,
                     received_messages,
                 )
-                await websocket.send(State(values=action_state).SerializeToString())
+                await websocket.send(
+                    ActionState(values=action_state).SerializeToString()
+                )
                 received_messages.clear()
 
     async with websockets.serve(_handle, "localhost", 2112):
