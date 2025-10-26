@@ -46,7 +46,7 @@ async def _launch_websocket_server(action_taker: ActionTaker, num_state_keys: in
     """
     received_messages: dict[str, list[float]] = {}
 
-    async def _handle(websocket: WebSocketServerProtocol, path: str):
+    async def _handle(websocket: WebSocketServerProtocol):
         async for binary_message in websocket:
             message = PartitionState()
             message.ParseFromString(binary_message)
